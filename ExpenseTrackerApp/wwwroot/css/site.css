@@ -51,3 +51,10 @@ body {
     color: #212b36;
     border: 1px solid #fff;
 }
+
+/*Widget*/
+.widget {
+
+    border-radius: 1rem;
+    background-color: #212b3626;
+}
