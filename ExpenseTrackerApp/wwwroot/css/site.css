@@ -27,6 +27,18 @@ body {
     font-size: x-large;
 }
 
+/*Button Edit and Delete*/
+.btn:focus, .btn:active{
+    outline:none !important;
+    box-shadow:none;
+}
+
+/*Hyperlink*/
+.no-a-decoration, .no-a-decoration:hover{
+    text-decoration:none;
+    color:inherit;
+}
+
 
 /*Radio button Group*/
 .e-btn-group.custom-rbt-group{
