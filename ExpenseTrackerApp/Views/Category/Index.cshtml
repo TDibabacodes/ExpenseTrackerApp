@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<ExpenseTrackerApp.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["PageTitle"] = "Categories";
+    ViewData["PageActionText"] = "+ New Category";
+    ViewData["PageActionUrl"] = "/Category/AddorEdit";
 }
 
 <div class="row">
@@ -34,17 +36,20 @@
 </script>
 
 <script id="actionColumnTemplate" type="text/x-template">
-   
-    <div  class="d-flex flex-row justify-content-start">
-        <a class="btn btn-sm no-a-decoration"  href="/Category/AddorEdit/${CategoryId}">
+    <div class="d-flex flex-row justify-content-start align-items-center">
+        <a class="btn btn-sm no-a-decoration me-2" href="/Category/AddorEdit/${CategoryId}">
+            <i class="fa-solid fa-pen fa-lg"></i>
+        </a>
 
-            <i class="fa-solid fa-pen fa-lg"></i></a>
-
-
-
-
-
+        <form action="/Category/Delete/${CategoryId}" method="post" class="mb-0">
+    @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+                onclick="return confirm(&quot;Are you sure you want to delete?&quot;)"
+                style="padding: 0;">
+                <i class="fa-solid fa-trash-can fa-lg text-danger"></i>
+            </button>
+        </form>
     </div>
-
 </script>
+
 
