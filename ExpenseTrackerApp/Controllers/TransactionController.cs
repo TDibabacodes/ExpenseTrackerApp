@@ -25,20 +25,22 @@ namespace ExpenseTrackerApp.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-       
-        // GET: Transaction/AddorEdit
-        public IActionResult AddorEdit()
+
+
+
+        // GET: Transaction/AddOrEdit
+        public IActionResult AddOrEdit()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
-            return View();
+            PopulateCategories();
+            return View(new Transaction());
         }
 
-        // POST: Transaction/AddorEdit
+        // POST: Transaction/AddOrEdit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction transaction)
+        public async Task<IActionResult> AddOrEdit([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -68,6 +70,16 @@ namespace ExpenseTrackerApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+
+
+        [NonAction]
+        public void PopulateCategories()
+        {
+            var CategoryCollection = _context.Categories.ToList();
+            Category DefaultCategory = new Category() { CategoryId = 0, Title = "Choose a Category" };
+            ViewBag.Categories = CategoryCollection;
+
+
+        }
     }
 }
